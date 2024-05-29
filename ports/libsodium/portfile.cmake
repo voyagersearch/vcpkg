@@ -2,10 +2,8 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO jedisct1/libsodium
     REF ${VERSION}
-    SHA512 6094d7bf191ea3be85f2ddab76b71f1b9c69c786493db5b84d3c5d5a0237003377ddf6a8687a962ea651fe4a9369cf5ee1676ba0bae82690f5f7ef31a698efa9
+    SHA512 efeb4c0dc352993fc128974abb27e4be60521e85ce191c8c38a84168d4e7d7b1d2c26843250077dd21dadb13678bf56712375e74754eb02100b8cc418ebffb94
     HEAD_REF master
-    PATCHES
-        arm-neon.diff # https://github.com/jedisct1/libsodium/commit/8f453f41f8834e0fe47610f2a3e03e696ddb3450 with fuzz 2
 )
 
 if(VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_TARGET_IS_MINGW)
