@@ -10,6 +10,21 @@ vcpkg_from_github(
         fail-on-compiler-not-supported.patch
 )
 
+# JD: hack to make compilation work on epel8 distros
+if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+    execute_process(
+        COMMAND cat /etc/os-release
+        OUTPUT_VARIABLE OS_RELEASE_CONTENT
+    )
+
+    string(REGEX MATCH "ID=[\"']?almalinux[\"']?" ALMA_MATCH "${OS_RELEASE_CONTENT}")
+
+    if (ALMA_MATCH)
+      set(VCPKG_CXX_FLAGS -fcoroutines)
+      set(VCPKG_C_FLAGS -fcoroutines)
+    endif()
+endif()
+
 set(FEATURE_OPTIONS "")
 boost_configure_and_install(
     SOURCE_PATH "${SOURCE_PATH}"
